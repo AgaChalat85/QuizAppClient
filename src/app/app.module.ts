@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { RandomQuestionComponent } from './random-question/random-question.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RandomQuestionComponent
   ],
   imports: [
     BrowserModule,
