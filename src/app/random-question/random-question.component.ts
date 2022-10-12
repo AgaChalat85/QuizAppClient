@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../model/Question';
 import { QuizApiService } from '../services/quiz-api.service';
 
 @Component({
@@ -8,9 +9,15 @@ import { QuizApiService } from '../services/quiz-api.service';
 })
 export class RandomQuestionComponent implements OnInit {
 
-  constructor(private quizApiQuestion : QuizApiService) { }
+  public question : any;
+  public error : string | undefined;
+
+  constructor(private quizApiService : QuizApiService) { }
 
   ngOnInit(): void {
+    this.quizApiService.getRandomQuestion().subscribe({
+      next: (question) => { this.question = question }
+    });
   }
 
 }

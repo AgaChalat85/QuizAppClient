@@ -1,1 +1,8 @@
-<p>random-question works!</p>
+<div>
+    <p>{{question?.question}}</p>
+    <div *ngFor="let answer of question?.answers">
+        <ul>
+            <li>{{answer?.answer}}</li>
+        </ul>
+    </div>
+</div>
