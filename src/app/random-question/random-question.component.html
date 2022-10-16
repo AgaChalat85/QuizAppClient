@@ -1,8 +1,27 @@
 <div class="singleQuestion vertical-center">
+    <p>Multiple choice: {{question?.multipleAnswers}}</p>
     <p>{{question?.question}}</p>
     <div *ngFor="let answer of question?.answers">
-        <ul>
-            <li>{{answer?.answer}}</li>
-        </ul>
+        <span>
+            <input type="radio" name="answer" value="{{answer.serial}}" (change)="onAnswerChange($event)">
+            {{answer.answer}}
+            {{answer.selected}}
+        </span>
+    </div>
+    <p>Category: {{question?.category}}</p>
+    <p>Difficulty: {{question?.difficulty}}</p>
+    <button *ngIf="showCorrectMessage==false&&showWrongMessage==false" 
+            (click)="evaluateAnswer()">
+            Evaluate
+    </button>
+
+    <div *ngIf="showNoAnswerMessage==true">
+        <p>PLEASE CHOOSE AN ANSWER</p>
+    </div>
+    <div *ngIf="showCorrectMessage==true">
+        <p>CORRECT</p>
+    </div>
+    <div *ngIf="showWrongMessage==true">
+        <p>WRONG</p>
     </div>
 </div>

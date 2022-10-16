@@ -11,6 +11,10 @@ export class RandomQuestionComponent implements OnInit {
 
   public question : any;
   public error : string | undefined;
+  public selected : number;
+  public showCorrectMessage : boolean = false;
+  public showWrongMessage : boolean = false;
+  public showNoAnswerMessage : boolean = false;
 
   constructor(private quizApiService : QuizApiService) { }
 
@@ -20,4 +24,21 @@ export class RandomQuestionComponent implements OnInit {
     });
   }
 
+  onAnswerChange(event : any) {
+    this.selected = event.target.value;
+  }
+
+  evaluateAnswer() {
+    if(this.selected == null) {
+      this.showNoAnswerMessage = true;
+    }
+
+    if(this.question.answers[this.selected - 1].correct) {
+      this.showCorrectMessage = true;
+      this.showNoAnswerMessage = false;
+    } else {
+      this.showWrongMessage = true;
+      this.showNoAnswerMessage = false;
+    }
+  }
 }
