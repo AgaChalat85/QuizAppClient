@@ -24,4 +24,6 @@
     <div *ngIf="showWrongMessage==true">
         <p>WRONG</p>
     </div>
+    <button *ngIf="showNextQuestionButton==true"
+            (click)="nextQuestion()">Next Question</button>
 </div>

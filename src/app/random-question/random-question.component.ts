@@ -15,6 +15,7 @@ export class RandomQuestionComponent implements OnInit {
   public showCorrectMessage : boolean = false;
   public showWrongMessage : boolean = false;
   public showNoAnswerMessage : boolean = false;
+  public showNextQuestionButton : boolean = false;
 
   constructor(private quizApiService : QuizApiService) { }
 
@@ -40,5 +41,16 @@ export class RandomQuestionComponent implements OnInit {
       this.showWrongMessage = true;
       this.showNoAnswerMessage = false;
     }
+    this.showNextQuestionButton = true;
+  }
+
+  nextQuestion() {
+    this.quizApiService.getRandomQuestion().subscribe({
+      next: (question) => { this.question = question }
+    });
+    this.showCorrectMessage = false;
+    this.showWrongMessage = false;
+    this.showNoAnswerMessage = false;
+    this.showNextQuestionButton = false;
   }
 }
