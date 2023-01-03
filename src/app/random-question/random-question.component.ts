@@ -16,6 +16,9 @@ export class RandomQuestionComponent implements OnInit {
   public showWrongMessage : boolean = false;
   public showNoAnswerMessage : boolean = false;
   public showNextQuestionButton : boolean = false;
+  public correctAnswers : number = 0;
+  public allQuestions : number = 0;
+  public percentageOfCorrectAnswers : number = 0;
 
   constructor(private quizApiService : QuizApiService) { }
 
@@ -37,11 +40,14 @@ export class RandomQuestionComponent implements OnInit {
     if(this.question.answers[this.selected - 1].correct) {
       this.showCorrectMessage = true;
       this.showNoAnswerMessage = false;
+      this.correctAnswers++;
     } else {
       this.showWrongMessage = true;
       this.showNoAnswerMessage = false;
     }
     this.showNextQuestionButton = true;
+    this.allQuestions++;
+    this.percentageOfCorrectAnswers = Math.round((this.correctAnswers / this.allQuestions) * 100);
   }
 
   nextQuestion() {

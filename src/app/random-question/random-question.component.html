@@ -26,4 +26,5 @@
     </div>
     <button *ngIf="showNextQuestionButton==true"
             (click)="nextQuestion()">Next Question</button>
+    <span *ngIf="allQuestions > 0" style="float: right;">{{correctAnswers}}/{{allQuestions}} ({{percentageOfCorrectAnswers}}%)</span>
 </div>
