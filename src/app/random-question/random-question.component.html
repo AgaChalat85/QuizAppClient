@@ -2,7 +2,7 @@
     <p>Multiple choice: {{question?.multipleAnswers}}</p>
     <p>{{question?.question}}</p>
     <div *ngFor="let answer of question?.answers">
-        <span>
+        <span [ngStyle]="{'background-color': answer.correct==true && showNextQuestionButton==true ? 'green' : 'white' }">
             <input type="radio" name="answer" value="{{answer.serial}}" (change)="onAnswerChange($event)">
             {{answer.answer}}
             {{answer.selected}}
